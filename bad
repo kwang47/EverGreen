@@ -1,0 +1,18 @@
+                <label for="fname">Spending</label>
+                <input type="text" id="spending" name="firstname" placeholder="Spending">
+
+                <div class="w3-light-grey">
+                    <div id="myBar" class="w3-container w3-green w3-center" style="width:0%">0%</div>
+                </div>
+
+                <br>
+                <button class="w3-button w3-green" onclick="move()">Click Me</button>
+                <br>
+
+
+                <div class="w3-light-grey">
+                  <div class="w3-grey" style="height:24px;width:0%"></div>
+                </div>
+
+
+

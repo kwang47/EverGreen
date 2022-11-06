@@ -1,0 +1,4 @@
+pymongo
+flask
+redis
+redis-server

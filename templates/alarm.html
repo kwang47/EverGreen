@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Alarm</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script>
+        function email(){
+            fetch('http://localhost:5000/email', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+        }
+        function play(){
+            var audio = new Audio("static/Alarm sound effect.mp4");
+            audio.play()
+        }
+        function move(callid) {
+
+            var elem = document.getElementById(callid+"bar");
+            var elem2 = document.getElementById(callid+"value");
+            const aArray = elem.innerHTML.split('/')
+
+            if(elem2.value>=aArray[1]){
+                play()
+                alert("You went over!")
+                email()
+                elem.style.width=(100).toString()+"%"
+
+
+            }else{
+                elem.style.width=((elem2.value/aArray[1])*100).toString()+"%"
+            }
+
+        }
+
+
+    </script>
+    <style>
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .abutton{
+            border: none;
+            border-radius: 10%;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;}
+        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {height: 450px}
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            padding-top: 20px;
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+            .row.content {height:auto;}
+        }
+
+        .aeight {
+            overflow: visible; /* For IE */
+            padding: 0;
+            border: none;
+            border-top: medium double #333;
+            color: #333;
+            text-align: center;
+        }
+        .aeight:after {
+            content: "§";
+            display: inline-block;
+            position: relative;
+            top: -0.7em;
+            font-size: 1.5em;
+            padding: 0 0.25em;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand"  href="/">EveryGreen</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+
+
+<div class="container-fluid text-center">
+    <div class=" content">
+        <div class="col-sm-2 sidenav"  style="background-color: white"></div>
+        <div class="col-sm-4 text-left">
+
+            <div style="color: black">
+                <h1>Create Your Budgeting Now</h1>
+                <hr>
+
+            </div>
+
+        </div>
+        <div class="col-sm-4 text-left">
+
+        </div>
+
+        <div class="col-sm-2 sidenav" style="background-color: white">
+
+            </div>
+
+        </div>
+
+    </div></div>
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav"  style="background-color: white"></div>
+        <div class="col-sm-4 text-left">
+
+            <div style="color: black">
+                <div style="  border-radius: 5px;  background-color: #f2f2f2; padding: 20px;">
+                    <form method="post" onsubmit="return validateMyForm();">
+                        <label for="fname">Email</label>
+                        <input type="text" id="fname" name="Email" placeholder="Email">
+
+                        <label for="Type">Set Category</label>
+                        <input type="text" id="Type" name="Category" placeholder="Set Category">
+
+                        <label for="Limit">Set Limit</label>
+                        <input type="text" id="Limit" name="Limit" placeholder="Set Limit">
+
+                        <label for="lname">Set Your Alert Message</label>
+                        <input type="text" id="lname" name="Message" placeholder="Set Your Alert Message">
+
+                        <input type="submit" value="Submit" >
+                    </form>
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-sm-4 text-left">
+            <img style=" max-width: 100%;height: auto;  border-radius: 20%" src="https://img.freepik.com/premium-photo/business-charts-green_93675-144007.jpg?w=2000">
+            <p style="text-align: center"> Image credit: freepik.com </p>
+        </div>
+
+        <div class="col-sm-2 sidenav" style="background-color: white">
+
+        </div>
+
+    </div>
+
+</div></div>
+<div class="container-fluid text-center">
+    <div class="content">
+        <div class="col-sm-2 "  style="background-color: white"></div>
+        <div class="col-sm-8 " >
+            <hr style="border: 0;height: 1px;background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
+        </div>
+        <div class="col-sm-2 " style="background-color: white">
+
+        </div>
+
+    </div>
+
+</div></div>
+
+<div class="container-fluid text-center">
+    <div class=" content">
+        <div class="col-sm-2 sidenav"  style="background-color: white">
+
+        </div>
+        <div class="col-sm-4 text-left">
+
+        </div>
+        <div class="col-sm-4 text-left">
+
+            <div style="color: black">
+                <h1>Current Active Budgets</h1>
+                <hr>
+
+            </div>
+
+        </div>
+
+        <div class="col-sm-2 sidenav" style="background-color: white">
+
+        </div>
+    </div>
+</div></div>
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav"  style="background-color: white">
+
+        </div>
+        <div class="col-sm-4 text-left">
+            <img style=" max-width: 100%;height: auto;  border-radius: 20%" src="https://www.dstamerica.com/wp-content/uploads/DST-sell-world-wide-website.jpg">
+            <p style="text-align: center"> Image credit: dstamerica.com </p>
+        </div>
+        <div class="col-sm-4 text-left">
+
+            <div style="color: black" id="handleAmount">
+                <div ip="REPACE"></div><br>
+            </div>
+
+        </div>
+
+        <div class="col-sm-2 sidenav" style="background-color: white">
+
+        </div>
+    </div>
+</div></div>
+<div class="container-fluid text-center">
+    <div class="content">
+        <div class="col-sm-2 "  style="background-color: white"></div>
+        <div class="col-sm-8 " >
+            <hr style="border: 0;height: 1px;background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
+        </div>
+        <div class="col-sm-2 " style="background-color: white">
+
+        </div>
+
+    </div>
+
+</div></div>
+
+<div class="container-fluid text-center">
+    <div class=" content">
+        <div class="col-sm-2 sidenav"  style="background-color: white">
+
+        </div>
+        <div class="col-sm-4 text-left">
+
+            <div style="color: black">
+                <h1>Tips and Resources</h1>
+                <hr>
+
+            </div>
+
+        </div>
+        <div class="col-sm-4 text-left">
+
+        </div>
+
+        <div class="col-sm-2 sidenav" style="background-color: white">
+
+        </div>
+    </div>
+</div></div>
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav"  style="background-color: white">
+
+        </div>
+        <div class="col-sm-4 text-left">
+
+            <div style="color: black">
+
+                <ul>
+                    <li> <p style="font-weight: bold;">'Pay yourself first' and build an emergency fund</p></li>
+                    <p>When you’re in college, you might be feeling social pressure to spend beyond your means. But be careful about splurging if you haven’t built up your savings account.
+
+                        “Students want to get into the habit of paying themselves first,” said certified financial planner Devone McLeod. “Treat saving as if it is a bill and put those allocated funds away first. Treating savings as a priority instead of an afterthought results in putting a lot more money away.”
+
+                        Building your savings will provide a cushion for any unexpected expenses. You never know what life will throw at you, so protect yourself financially by funneling money into an emergency fund.
+
+                        Hopefully, you won’t have to touch that rainy day account, but you’ll feel better knowing it’s there, just in case.</p>
+                    <li> <p style="font-weight: bold;">Don’t waste student loan money on nonessentials</p></li>
+                    <p>Student loans can be a useful tool for covering tuition and other college costs, but you should avoid borrowing more than you need. Some college students spend part of their loan money on clothing or entertainment, but this decision could come back to haunt you.
+
+                        If you’re using student loan money for non-essentials, you could come to regret it after graduation when those first student loan bills kick in. Not only will you have higher monthly payments, but your larger debt balance will accumulate serious interest.</p>
+                    <li> <p style="font-weight: bold;">Use credit cards responsibly (but avoid credit card debt like the plague)</p></li>
+                    <p>It takes time to build good credit, so starting while you’re a college student could help you in the future. Your credit score depends on a few factors, including the age of your accounts and your history of repayment.
+
+                        By opening a credit card account, you could establish your credit history with on-time payments. But you’ll have to be careful not to spend more than you can afford to pay off each month, or else you could end up with high-interest credit card debt that’s hard to pay off.</p>
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-sm-4 text-left">
+            <img style=" max-width: 100%;height: auto; border-radius: 20%" src="https://www.publicdomainpictures.net/pictures/270000/nahled/survivalsurviverescue-help-arms.jpg">
+            <p style="text-align: center"> Image credit: publicdomainpictures.com </p>
+        </div>
+
+        <div class="col-sm-2 sidenav" style="background-color: white">
+
+        </div>
+    </div>
+</div></div>
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav"  style="background-color: white">
+
+        </div>
+        <div class="col-sm-8 text-left">
+
+            <div style="color: black">
+
+                <ul>
+                    <li> <p style="font-weight: bold;">Entertain on a budget.</p></li>
+                    <p>There are lots of ways to have a good time in college without breaking the bank. In fact, many college activities are free to students because a general student activity fee has probably already been folded into your tuition payment.
+
+                        Set limits on your spending for nights out and dates, and don’t be intimidated into believing that you have to prove anything by the amount of money you shower on your friends. There’s nothing wrong with having fun, but remember why you’re in college. Excessive partying can lower your GPA and your bank account.</p>
+                    <li> <p style="font-weight: bold;">Scale Your Debt to Your Expected Income</p></li>
+                    <p>If your total student loan debt at graduation is less than your annual starting salary, you should be able to afford to repay your student loans in ten years or less.
+
+                        If your total debt exceeds your annual income, you’ll struggle to repay your student loans and will need an extended or income-driven repayment plan to afford the monthly loan payments. These repayment plans reduce the monthly loan payments by increasing the repayment term to 20, 25 or even 30 years. But, this comes at a cost of paying more interest over the life of the loan. You’ll also still be in debt when your children enroll in college.</p>
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="col-sm-2 sidenav" style="background-color: white">
+
+        </div>
+    </div>
+</div></div>
+<div class="container-fluid text-center">
+    <div class="content">
+        <div class="col-sm-2 "  style="background-color: white"></div>
+        <div class="col-sm-8 " >
+            <hr class="aeight">
+        </div>
+        <div class="col-sm-2 " style="background-color: white">
+
+        </div>
+
+    </div>
+
+</div></div>
+
+</body>
+</html>
